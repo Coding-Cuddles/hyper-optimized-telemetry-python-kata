@@ -35,25 +35,19 @@ trivial):
 | -9_223_372_036_854_775_808 | -2_147_483_649            | `long`           |
 
 The value should be converted to the appropriate number of bytes for its
-assigned type. The complete buffer comprises a byte indicating the number of
-additional bytes in the buffer (_prefix byte_) followed by the bytes holding
-the integer (_payload bytes_).
+assigned type. The complete internal 9-byte buffer comprises three parts:
+* _prefix byte_: a byte indicating the number of the payload bytes in the buffer;
+* _payload bytes_: the bytes holding the integer;
+* _trailing bytes_: the zero-fill bytes to complete the buffer.
 
-Some of the types use an identical number of bytes (e.g. the `unsigned int` and
-`int` types). Normally, they would have the same _prefix byte_, but that would
-make decoding problematic. To counter this, the protocol introduces a little
+To distinguish between signed and unsigned types, the protocol introduces a little
 trick: for signed types, their _prefix byte_ value is `256` minus the number of
-additional bytes in the buffer.
-
-Only the prefix byte and the number of following bytes indicated by the prefix
-will be sent in the communication. Internally, a 9-byte buffer is used (with
-trailing zeroes, as necessary) both by sending and receiving routines.
+_payload bytes_ in the buffer.
 
 ### Exercise 1
 
-The task is to encode an integral value ready to send. Please implement the
-static method `TelemetryBuffer.to_buffer()` to encode a buffer taking the
-parameter passed to the method.
+Implement the static method `TelemetryBuffer.to_buffer()` to encode a buffer taking
+an integer value passed to the method.
 
 ```python
 # Type: unsigned short, bytes: 2, signed: no, prefix byte: 2
@@ -67,16 +61,15 @@ TelemetryBuffer.to_buffer(2_147_483_647)
 
 ### Exercise 2
 
-The task is to decode a received buffer. Please implement the static method
-`TelemetryBuffer.from_buffer()` to decode the buffer received and return the
-value in the form of an integer.
+Implement the static method `TelemetryBuffer.from_buffer()` to decode the buffer
+received, and return the value in the form of an integer.
 
 ```python
 TelemetryBuffer.from_buffer([0xfc, 0xff, 0xff, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0])
 # => 2_147_483_647
 ```
 
-If the prefix byte is of unexpected value then `0` should be returned.
+If the prefix byte is of unexpected value, then return `0`.
 
 ## Integral numbers in C
 
