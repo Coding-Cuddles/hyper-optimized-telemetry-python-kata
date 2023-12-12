@@ -36,18 +36,19 @@ trivial):
 
 The value should be converted to the appropriate number of bytes for its
 assigned type. The complete internal 9-byte buffer comprises three parts:
-* _prefix byte_: a byte indicating the number of the payload bytes in the buffer;
+* _prefix byte_: a byte indicating the number of the payload bytes in the
+  buffer;
 * _payload bytes_: the bytes holding the integer;
 * _trailing bytes_: the zero-fill bytes to complete the buffer.
 
-To distinguish between signed and unsigned types, the protocol introduces a little
-trick: for signed types, their _prefix byte_ value is `256` minus the number of
-_payload bytes_ in the buffer.
+To distinguish between signed and unsigned types, the protocol introduces a
+little trick: for signed types, their _prefix byte_ value is `256` minus the
+number of _payload bytes_ in the buffer.
 
 ### Exercise 1
 
-Implement the static method `TelemetryBuffer.to_buffer()` to encode a buffer taking
-an integer value passed to the method.
+Implement the static method `TelemetryBuffer.to_buffer()` to encode a buffer
+taking an integer value passed to the method.
 
 ```python
 # Type: unsigned short, bytes: 2, signed: no, prefix byte: 2
@@ -56,16 +57,21 @@ TelemetryBuffer.to_buffer(5)
 
 # Type: int, bytes: 4, signed: yes, prefix byte: 256 - 4
 TelemetryBuffer.to_buffer(2_147_483_647)
-# => [0xfc, 0xff, 0xff, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0]
+# => [0xFC, 0xFF, 0xFF, 0xFF, 0x7F, 0x0, 0x0, 0x0, 0x0]
 ```
+
+> *Hint*
+>
+> The `BitConverter` class provides a convenient way of converting integer
+> types to and from arrays of bytes.
 
 ### Exercise 2
 
-Implement the static method `TelemetryBuffer.from_buffer()` to decode the buffer
-received, and return the value in the form of an integer.
+Implement the static method `TelemetryBuffer.from_buffer()` to decode the
+buffer received, and return the value in the form of an integer.
 
 ```python
-TelemetryBuffer.from_buffer([0xfc, 0xff, 0xff, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0])
+TelemetryBuffer.from_buffer([0xFC, 0xFF, 0xFF, 0xFF, 0x7F, 0x0, 0x0, 0x0, 0x0])
 # => 2_147_483_647
 ```
 

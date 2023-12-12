@@ -5,4 +5,7 @@ class TelemetryBuffer:
 
     @classmethod
     def to_buffer(cls, reading):
-        return [0x2] + BitConverter.get_bytes(reading) + [0x0] * 7
+        buffer = [0x2]
+        buffer += BitConverter.int16_to_bytes(reading)
+        buffer += [0x0] * 6
+        return buffer
