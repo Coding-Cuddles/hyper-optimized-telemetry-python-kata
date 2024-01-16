@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "bootstrap-python-kata"
+name = "hyper-optimized-telemetry-python-kata"
 version = "1.0.0"
-description = "Bootstrap for Python katas"
+description = "Hyper-optimized telemetry kata in Python"
 authors = ["Codding Cuddles"]
 
 [tool.poetry.dependencies]
