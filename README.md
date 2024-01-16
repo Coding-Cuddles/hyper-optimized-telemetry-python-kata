@@ -57,10 +57,10 @@ TelemetryBuffer.to_buffer(5)
 
 # Type: int, bytes: 4, signed: yes, prefix byte: 256 - 4
 TelemetryBuffer.to_buffer(2_147_483_647)
-# => [0xFC, 0xFF, 0xFF, 0xFF, 0x7F, 0x0, 0x0, 0x0, 0x0]
+# => [0xfc, 0xff, 0xff, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0]
 ```
 
-> *Hint*
+> **Hint**
 >
 > The `BitConverter` class provides a convenient way of converting integer
 > types to and from arrays of bytes.
@@ -71,7 +71,7 @@ Implement the static method `TelemetryBuffer.from_buffer()` to decode the
 buffer received, and return the value in the form of an integer.
 
 ```python
-TelemetryBuffer.from_buffer([0xFC, 0xFF, 0xFF, 0xFF, 0x7F, 0x0, 0x0, 0x0, 0x0])
+TelemetryBuffer.from_buffer([0xfc, 0xff, 0xff, 0xff, 0x7f, 0x0, 0x0, 0x0, 0x0])
 # => 2_147_483_647
 ```
 
@@ -87,16 +87,16 @@ The C language provides a number of types that represent integers, each with
 its own range of values. The ranges are determined by the storage width of the
 type as allocated by the system:
 
-| Type           | Width  | Minimum                    | Maximum                     |
-|:---------------|:-------|:---------------------------|:--------------------------- |
-| char           | 8 bit  | -128                       | +127                        |
-| short          | 16 bit | -32_768                    | +32_767                     |
-| int            | 32 bit | -2_147_483_648             | +2_147_483_647              |
-| long           | 64 bit | -9_223_372_036_854_775_808 | +9_223_372_036_854_775_807  |
-| unsigned char  | 8 bit  | 0                          | +255                        |
-| unsigned short | 16 bit | 0                          | +65_535                     |
-| unsigned int   | 32 bit | 0                          | +4_294_967_295              |
-| unsigned long  | 64 bit | 0                          | +18_446_744_073_709_551_615 |
+| Type             | Width  | Minimum                    | Maximum                     |
+|:-----------------|:-------|:---------------------------|:--------------------------- |
+| `char`           | 8 bit  | -128                       | +127                        |
+| `short`          | 16 bit | -32_768                    | +32_767                     |
+| `int`            | 32 bit | -2_147_483_648             | +2_147_483_647              |
+| `long`           | 64 bit | -9_223_372_036_854_775_808 | +9_223_372_036_854_775_807  |
+| `unsigned char`  | 8 bit  | 0                          | +255                        |
+| `unsigned short` | 16 bit | 0                          | +65_535                     |
+| `unsigned int`   | 32 bit | 0                          | +4_294_967_295              |
+| `unsigned long`  | 64 bit | 0                          | +18_446_744_073_709_551_615 |
 
 ## Usage
 
