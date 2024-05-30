@@ -15,7 +15,7 @@ class TestBitConverter:
         (32767, [0xFF, 0x7F]),
     ])
     def test_int16_to_bytes(self, test_input, expected):
-        assert BitConverter().int16_to_bytes(test_input) == expected
+        assert BitConverter.int16_to_bytes(test_input) == expected
 
     @pytest.mark.parametrize("test_input,expected", [
         (0, [0x00, 0x00]),
@@ -26,7 +26,7 @@ class TestBitConverter:
         (65535, [0xFF, 0xFF]),
     ])
     def test_uint16_to_bytes(self, test_input, expected):
-        assert BitConverter().uint16_to_bytes(test_input) == expected
+        assert BitConverter.uint16_to_bytes(test_input) == expected
 
     @pytest.mark.parametrize("test_input,expected", [
         (0, [0x00, 0x00, 0x00, 0x00]),
@@ -40,7 +40,7 @@ class TestBitConverter:
         (2147483647, [0xFF, 0xFF, 0xFF, 0x7F]),
     ])
     def test_int32_to_bytes(self, test_input, expected):
-        assert BitConverter().int32_to_bytes(test_input) == expected
+        assert BitConverter.int32_to_bytes(test_input) == expected
 
     @pytest.mark.parametrize("test_input,expected", [
         (0, [0x00, 0x00, 0x00, 0x00]),
@@ -52,7 +52,7 @@ class TestBitConverter:
         (4294967295, [0xFF, 0xFF, 0xFF, 0xFF]),
     ])
     def test_uint32_to_bytes(self, test_input, expected):
-        assert BitConverter().uint32_to_bytes(test_input) == expected
+        assert BitConverter.uint32_to_bytes(test_input) == expected
 
     @pytest.mark.parametrize("test_input,expected", [
         (0, [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]),
@@ -70,7 +70,7 @@ class TestBitConverter:
         (9223372036854775807, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F]),
     ])
     def test_int64_to_bytes(self, test_input, expected):
-        assert BitConverter().int64_to_bytes(test_input) == expected
+        assert BitConverter.int64_to_bytes(test_input) == expected
 
     @pytest.mark.parametrize("test_input,expected", [
         (0, [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]),
@@ -84,7 +84,7 @@ class TestBitConverter:
         (18446744073709551615, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]),
     ])
     def test_uint64_to_bytes(self, test_input, expected):
-        assert BitConverter().uint64_to_bytes(test_input) == expected
+        assert BitConverter.uint64_to_bytes(test_input) == expected
 
     @pytest.mark.parametrize("byte_list,expected", [
         ([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00], 0),
@@ -102,4 +102,4 @@ class TestBitConverter:
         ([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80], -9223372036854775808),
     ])
     def test_to_integer(self, byte_list, expected):
-        assert BitConverter().bytes_to_int64(byte_list) == expected
+        assert BitConverter.bytes_to_int64(byte_list) == expected
