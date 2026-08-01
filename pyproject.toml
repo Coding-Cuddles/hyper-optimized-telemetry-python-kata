@@ -1,19 +1,23 @@
-[tool.poetry]
+[project]
 name = "hyper-optimized-telemetry-python-kata"
 version = "1.0.0"
 description = "Hyper-optimized telemetry kata in Python"
-authors = ["Codding Cuddles"]
+authors = [{ name = "Codding Cuddles" }]
+requires-python = ">=3.11"
 
-[tool.poetry.dependencies]
-python = ">=3.8.0"
+dependencies = [
+    "pytest>=9.1.1"
+]
 
-[tool.poetry.dev-dependencies]
-pytest = "^7.2.0"
-replit-python-lsp-server = {extras = ["yapf", "rope", "pyflakes"], version = "^1.15.9"}
+[dependency-groups]
+dev = [
+    "ruff>=0.16.1"
+]
 
-[tool.yapf]
-column_limit = 100
+[tool.ruff]
+target-version = "py311"
+line-length = 100
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
