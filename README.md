@@ -37,10 +37,11 @@ trivial):
 
 The value should be converted to the appropriate number of bytes for its
 assigned type. The complete internal 9-byte buffer comprises three parts:
-* _prefix byte_: a byte indicating the number of the payload bytes in the
+
+- _prefix byte_: a byte indicating the number of the payload bytes in the
   buffer;
-* _payload bytes_: the bytes holding the integer;
-* _trailing bytes_: the zero-fill bytes to complete the buffer.
+- _payload bytes_: the bytes holding the integer;
+- _trailing bytes_: the zero-fill bytes to complete the buffer.
 
 To distinguish between signed and unsigned types, the protocol introduces a
 little trick: for signed types, their _prefix byte_ value is `256` minus the
@@ -182,4 +183,4 @@ Make is optional. Run `make` or `make help` to list these commands in the termin
 
 ## Credits and references
 
-* <https://exercism.org/tracks/csharp/exercises/hyper-optimized-telemetry>
+- <https://exercism.org/tracks/csharp/exercises/hyper-optimized-telemetry>
