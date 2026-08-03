@@ -3,7 +3,6 @@ def _int_to_bytes_helper(value, length, *, signed=False):
 
 
 class BitConverter:
-
     @staticmethod
     def int16_to_bytes(value):
         """Convert the specified 16-bit signed integer value to bytes."""
