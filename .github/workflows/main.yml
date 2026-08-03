@@ -43,8 +43,5 @@ jobs:
           version: "latest"
           prune-cache: true
 
-      - name: Run main
-        run: make run
-
       - name: Test
         run: make test
