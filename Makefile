@@ -14,10 +14,6 @@ help: ## Show this help message
 	/^[a-zA-Z_-]+:.*##/ {printf "  $(COLOR_CYAN)%-20s$(COLOR_RESET) %s\n", $$1, $$2}' \
 		$(MAKEFILE_LIST)
 
-.PHONY: run
-run: ## Run the sample entry point
-	uv run python main.py
-
 .PHONY: test
 test: ## Run tests
 	uv run pytest test_*.py
